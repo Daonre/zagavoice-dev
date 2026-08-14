@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #070B14;
+  color: #E6EDF7;
+}
+
+/* signature: live pulse dot for the agent status */
+.pulse {
+  position: relative;
+}
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1px solid #A3E635;
+  animation: ring 1.8s ease-out infinite;
+}
+@keyframes ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse::after { animation: none; opacity: 0; }
+}
+
+.card {
+  @apply bg-panel border border-edge rounded-xl;
+}
+.input {
+  @apply w-full bg-ink border border-edge rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-dim/60 focus:outline-none focus:border-cyan;
+}
+.label {
+  @apply block text-xs uppercase tracking-widest text-dim mb-1.5;
+}
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg bg-cyan text-ink font-semibold text-sm px-4 py-2.5 hover:opacity-90 disabled:opacity-50 transition;
+}
