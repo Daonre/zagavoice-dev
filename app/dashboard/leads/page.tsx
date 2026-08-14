@@ -2,7 +2,7 @@ import Link from "next/link";
 import { supabaseServer } from "@/lib/supabase/server";
 
 export default async function Leads() {
-  const supabase = supabaseServer();
+  const supabase = await supabaseServer();
   const { data: leads } = await supabase
     .from("leads")
     .select("id, name, phone, email, reason, call_id, created_at")

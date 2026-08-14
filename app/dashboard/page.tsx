@@ -8,7 +8,7 @@ function fmtDur(s: number) {
 }
 
 export default async function Overview() {
-  const supabase = supabaseServer();
+  const supabase = await supabaseServer();
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
 
   const [{ count: totalCalls }, { count: weekCalls }, { count: totalLeads }, { data: recent }, { data: agent }] =

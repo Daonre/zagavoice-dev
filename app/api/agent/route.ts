@@ -3,7 +3,7 @@ import { supabaseServer } from "@/lib/supabase/server";
 import { upsertVapiAssistant } from "@/lib/vapi";
 
 export async function POST(req: NextRequest) {
-  const supabase = supabaseServer();
+  const supabase = await supabaseServer();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Not signed in" }, { status: 401 });
 

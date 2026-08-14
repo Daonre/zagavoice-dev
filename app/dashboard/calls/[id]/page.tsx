@@ -2,7 +2,7 @@ import { supabaseServer } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 
 export default async function CallDetail({ params }: { params: { id: string } }) {
-  const supabase = supabaseServer();
+  const supabase = await supabaseServer();
   const { data: call } = await supabase.from("calls").select("*").eq("id", params.id).single();
   if (!call) notFound();
 
