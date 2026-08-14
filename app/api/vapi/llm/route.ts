@@ -2,8 +2,6 @@ import { NextRequest } from "next/server";
 import OpenAI from "openai";
 import { BudgetGuard, BudgetExceeded } from "floe-guard";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 // One guard per active call, keyed by Vapi's call ID.
 // In-memory Map is fine for local/dev testing. For production on Vercel,
 // this needs to move to Supabase or Redis since serverless instances don't
@@ -20,6 +18,7 @@ function getGuardForCall(callId: string) {
 }
 
 export async function POST(req: NextRequest) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const body = await req.json();
 
   // Vapi sends the call context in the request; exact shape may vary
